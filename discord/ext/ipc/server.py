@@ -178,7 +178,6 @@ class Server:
                             endpoint,
                             request,
                         )
-                        self.bot.dispatch("ipc_error", endpoint, error)
 
                         response = {
                             "error": "IPC route raised error of type {}".format(
@@ -250,7 +249,6 @@ class Server:
 
     def start(self):
         """Starts the IPC server."""
-        self.bot.dispatch("ipc_ready")
 
         self._server = aiohttp.web.Application()
         self._server.router.add_route("GET", "/", self.handle_accept)
